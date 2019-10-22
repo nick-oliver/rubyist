@@ -15,11 +15,6 @@ class Ticket
   def discount
     @discount
   end
-  # testing still - this is probably wrong
-  def total_cost (calculation)
-    @total_cost = ticket.price.to_i * (100 - ticket.discount.to_i) / 100"
-  end
-  # End of experimenting
   def venue
     @venue
   end
@@ -30,16 +25,13 @@ class Ticket
     @price
   end
 end
-ticket = Ticket.new("Town Hall", "2013-11-12")
-ticket.price = 100.00
-puts "The ticket costs $#{"%.2f" % ticket.price}."
-ticket.discount = 15.00
-puts "The discount on this ticket is #{"%.2f" % ticket.discount}%."
-puts "The ticket for #{ticket.venue} has been discounted #{ticket.discount}%."
-# last line - experimenting
-puts "The final cost for the ticket is #{ticket.price.to_i} * (100 - #{ticket.discount.to_i}) / 100)"
-# last line - experimenting
-
+Ticket = Ticket.new("Town Hall", "2013-11-12")
+Ticket.price = 100.00
+puts "The ticket costs $#{"%.2f" % Ticket.price}."
+Ticket.discount = 15
+calculation = Ticket.price.to_i * (100 - Ticket.discount.to_i) / 100
+# puts "The discount on this ticket is #{"%.2f" % Ticket.discount}%."
+puts "The ticket for #{Ticket.venue} has been discounted #{Ticket.discount}%, to $#{"%.2f" % calculation}."
 
 # ticket.price = 72.50
 # puts "Whoops -- it just went up. It now costs $#{"%.2f" % ticket.price}."
