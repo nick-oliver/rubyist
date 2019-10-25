@@ -1,14 +1,9 @@
-require 'date'
-
 class Ticket
   def initialize(venue)
     @venue = venue
   end
   def price=(amount)
     @price = amount
-  end
-  def price
-    @price
   end
   def discount=(percent)
     @discount = percent
@@ -20,10 +15,11 @@ class Ticket
     @venue
   end
   def date=(date)
-    @date = date
-    if date "[/\d{4}-\d{1,2}-\d{1,2}]"
-      puts "The ticket date is #{date}"
-    else "Please submit the date in the format 'yyyy-mm-dd'"
+    year, month, day = date.split("-")
+    if year.length == 4 && month.length == 2 && day.length == 2
+      @date = date
+    else
+      puts "Please submit the date in the format 'yyyy-mm-dd'"
     end
   end
   def date
@@ -34,10 +30,7 @@ class Ticket
   end
 end
 Ticket = Ticket.new("Town Hall")
-print "Please enter todays date: "
-date = gets.to_s
-puts "The ticket date is #{date}"
-# Ticket.date = "2013-11-12"
+Ticket.date = "10-25-20019"
 Ticket.price = 100.00
 puts "The ticket costs $#{"%.2f" % Ticket.price}."
 Ticket.discount = 15
